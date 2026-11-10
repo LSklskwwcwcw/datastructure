@@ -6,7 +6,10 @@ def find_node(root,target)->bool:
         return False
     if root.val == target:
         return True
-    return find_node(root.left,target) or find_node(root.right,target)
+    if target < root.val:
+        return find_node(root.left,target)
+    if target > root.val:
+        return find_node(root.right,target)
 
 
 if __name__ == "__main__":
@@ -17,5 +20,5 @@ if __name__ == "__main__":
     for val in values_is:
         bst.insert(val)
 
-    result = find_node(bst.root,6)
+    result = find_node(bst.root,100)
     print(f"查找结果: {result}")  # 输出: 查找结果: True
